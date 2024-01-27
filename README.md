@@ -4,8 +4,7 @@
 -  Create a “Destination” entity with the following fields: name,
 description, price, duration of the trip, image of the destination.
 - Set up a database to store destinations
-- Create a home page that displays the list of destination destinations
-honeymoon with their images and descriptions. Each destination should have a link so the user can click and access to the details of the destination
+- Create a home page that displays the list of destination with their images and descriptions. Each destination should have a link so the user can click and access to the details of the destination
 - Allow users to click on a destination to view the full details of that destination.
 - Implement a basic authentication system for administrators.
 - Add a backoffice where administrators can create, update and delete destinations.
