@@ -1,27 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Destination{% endblock %}
+{% block title %}Destination - {{ destination.name }}{% endblock %}
 
 {% block body %}
 
 <main>
     <header>
-        <h1>Destination</h1>
+        <h1>Destination - {{ destination.name }}</h1>
     </header>
     <section>
-        {% if destinations is empty %}
-        <p>No destinations found</p>
-        {% endif %}
-        {% for destination in destinations %}
-            <article>
-                <img src="" alt="" />
-                <h4>{{destination.name}}</h4>
-                <p>{{ destination.description }}</p>
-                <p>
-                    <a>View details</a>
-                </p>
-            </article>
-        {% endfor %}
+        <img src="{{ asset('images/' ~ destination.image) }}" alt="" />
+        <p>{{ destination.description }}</p>
+        <p>Price : ${{ destination.price }}</p>
+        <p>Duration : {{ destination.duration }} days</p>
     </section>
 </div>
 {% endblock %}

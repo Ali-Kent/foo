@@ -14,11 +14,11 @@
         {% endif %}
         {% for destination in destinations %}
             <article>
-                <img src="" alt="" />
+                <img src="{{ asset('images/' ~ destination.image)}}" alt="" />
                 <h4>{{destination.name}}</h4>
                 <p>{{ destination.description }}</p>
                 <p>
-                    <a>View details</a>
+                    <a href="{{ path('destination', {id: destination.id}) }}">View details</a>
                 </p>
             </article>
         {% endfor %}
