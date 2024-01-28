@@ -1,0 +1,44 @@
+{% extends 'admin.base.html.twig' %}
+
+{% block title %}Admin Destination{% endblock %}
+
+{% block body %}
+    <header>
+        <h3>Destination</h3>
+    </header>
+    <section>
+        <a href="{{ path('admin_destination_add') }}">Add a destination</a>
+    </section>
+    <section>
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Duration</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if destinations is empty %}
+                    <tr><td>No destinations found</td></tr>
+                {% endif %}
+                {% for destination in destinations %}
+                    <tr>
+                        <td>{{destination.id}}</td>
+                        <td><img src="{{ asset('images/' ~ destination.image)}}" alt="" /></td>
+                        <td>{{destination.name}}</td>
+                        <td>{{ destination.price }}</td>
+                        <td>{{ destination.duration }}</td>
+                        <td>
+                            <a href="{{ path('admin_destination_delete', {id: destination.id}) }}">Delete</a> |
+                            <a href="{{ path('admin_destination_change_image', {id: destination.id}) }}">Change image</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+{% endblock %}
