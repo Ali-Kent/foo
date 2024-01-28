@@ -46,4 +46,12 @@ class DestinationController extends AbstractController
             'destination_form' => $destinationForm,
         ]);
     }
+
+    #[Route('/delete/{id}', name: 'delete')]
+    public function delete(Destination $destination): Response
+    {
+        $this->entityManager->remove($destination);
+        $this->entityManager->flush();
+        return $this->redirectToRoute('admin_destination_index');
+    }
 }

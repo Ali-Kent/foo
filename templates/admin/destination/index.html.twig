@@ -33,7 +33,7 @@
                         <td>{{ destination.price }}</td>
                         <td>{{ destination.duration }}</td>
                         <td>
-                            <a href="{# { path('admin_destination_delete', {id: destination.id}) } #}">Delete</a> |
+                            <a href="{{ path('admin_destination_delete', {id: destination.id}) }}">Delete</a> |
                             <a href="{# { path('admin_destination_change_image', {id: destination.id}) } #}">Change image</a>
                         </td>
                     </tr>
