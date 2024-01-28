@@ -28,13 +28,13 @@
                 {% for destination in destinations %}
                     <tr>
                         <td>{{destination.id}}</td>
-                        <td><img src="{{ asset('images/' ~ destination.image)}}" alt="" /></td>
+                        <td><img src="{{ asset('images/' ~ destination.image)}}" alt="" width="150" height="150" /></td>
                         <td>{{destination.name}}</td>
                         <td>{{ destination.price }}</td>
                         <td>{{ destination.duration }}</td>
                         <td>
-                            <a href="{{ path('admin_destination_delete', {id: destination.id}) }}">Delete</a> |
-                            <a href="{{ path('admin_destination_change_image', {id: destination.id}) }}">Change image</a>
+                            <a href="{# { path('admin_destination_delete', {id: destination.id}) } #}">Delete</a> |
+                            <a href="{# { path('admin_destination_change_image', {id: destination.id}) } #}">Change image</a>
                         </td>
                     </tr>
                 {% endfor %}
