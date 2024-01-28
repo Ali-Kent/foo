@@ -4,10 +4,10 @@
 
 {% block body %}
     <header>
-        <h3>Add a destination</h3>
+        <h3>Edit a destination</h3>
         <a href="{{ path('admin_destination_index') }}">Back to destination</a>
     </header>
     <section>
-        {{ form(destination_form) }}
+        {{ form(edit_destination_form) }}
     </section>
 {% endblock %}

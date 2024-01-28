@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Destination;
 use App\Form\DestinationType;
+use App\Form\EditDestinationType;
 use App\Repository\DestinationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -44,6 +45,22 @@ class DestinationController extends AbstractController
 
         return $this->render('admin/destination/add.html.twig', [
             'destination_form' => $destinationForm,
+        ]);
+    }
+
+    #[Route('/edit/{id}', name: 'edit')]
+    public function edit(Request $request, Destination $destination): Response
+    {
+        $editDestinationForm = $this->createForm(EditDestinationType::class, $destination);
+        $editDestinationForm->handleRequest($request);
+        if ($editDestinationForm->isSubmitted() && $editDestinationForm->isValid()) {
+            $this->entityManager->persist($destination);
+            $this->entityManager->flush();
+            return $this->redirectToRoute('admin_destination_index');
+        }
+
+        return $this->render('admin/destination/edit.html.twig', [
+            'edit_destination_form' => $editDestinationForm,
         ]);
     }
 
