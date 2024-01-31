@@ -14,6 +14,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: DestinationRepository::class)]
 #[ApiResource(
+    outputFormats: ['json'],
     operations: [
         new GetCollection(),
         new Post(inputFormats: ["multipart" => ['multipart/form-data']]),
