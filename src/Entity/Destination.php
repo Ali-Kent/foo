@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
@@ -17,11 +18,11 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
     outputFormats: ['json'],
     operations: [
         new GetCollection(),
-        new Post(inputFormats: ["multipart" => ['multipart/form-data']]),
+        new Post(),
     ],
     paginationEnabled: false,
 )]
-#[Vich\Uploadable]
+//#[Vich\Uploadable]
 class Destination
 {
     #[ORM\Id]
@@ -45,17 +46,16 @@ class Destination
     #[Assert\Positive]
     private ?int $duration = null;
     
-    #[Vich\UploadableField(mapping: 'images', fileNameProperty: 'imageName', size: 'imageSize')]
-    private ?File $imageFile = null;
+    /*
+    #[ORM\ManyToOne(targetEntity: Image::class)]
+    #[ORM\JoinColumn(nullable: true)]
+    #[ApiProperty(types: ['https://schema.org/image'])]
+    public ?Image $image = null;
+    */
 
     #[ORM\Column(nullable: true)]
-    private ?string $imageName = null;
+    private ?string $image = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $imageSize = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $updatedAt = null;
 
     public function getId(): ?int
     {
@@ -110,45 +110,29 @@ class Destination
         return $this;
     }
 
-    public function setImageFile(?File $imageFile = null): static
+    /*
+    public function getImage(): ?Image
     {
-        $this->imageFile = $imageFile;
+        return $this->image;
+    }
 
-        if (null !== $imageFile) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
-            $this->updatedAt = new \DateTimeImmutable();
-        }
+    public function setImage(?Image $image): static
+    {
+        $this->image = $image;
 
         return $this;
     }
+    */
 
-    public function getImageFile(): ?File
+    public function getImage(): ?string
     {
-        return $this->imageFile;
+        return $this->image;
     }
 
-    public function setImageName(?string $imageName): static
+    public function setImage(?string $image): static
     {
-        $this->imageName = $imageName;
-        
-        return $this;
-    }
-
-    public function getImageName(): ?string
-    {
-        return $this->imageName;
-    }
-
-    public function setImageSize(?int $imageSize): static
-    {
-        $this->imageSize = $imageSize;
+        $this->image = $image;
 
         return $this;
-    }
-
-    public function getImageSize(): ?int
-    {
-        return $this->imageSize;
     }
 }
